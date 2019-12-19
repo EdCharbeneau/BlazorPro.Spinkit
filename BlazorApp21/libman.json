@@ -1,0 +1,13 @@
+{
+  "version": "1.0",
+  "defaultProvider": "unpkg",
+  "libraries": [
+    {
+      "library": "spinkit@2.0.1",
+      "destination": "wwwroot/lib/spinkit/",
+      "files": [
+        "spinkit.min.css"
+      ]
+    }
+  ]
+}

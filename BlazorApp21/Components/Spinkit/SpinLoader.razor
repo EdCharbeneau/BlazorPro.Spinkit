@@ -1,0 +1,30 @@
+﻿@using BlazorApp21.Components.Spinkit.Spinners
+@using Spinkit
+
+@if (IsLoading)
+{
+    if (LoadingTemplate == null)
+    {
+        <DefaultSpinnerChooser DefaultSpinner="Spinner" />
+    }
+    else
+    {
+        @LoadingTemplate
+    }
+}
+else
+{
+    @ContentTemplate
+}
+
+@code {
+
+    [Parameter] public SpinnerType Spinner { get; set; }
+
+    [Parameter] public bool IsLoading { get; set; }
+
+    [Parameter] public RenderFragment LoadingTemplate { get; set; }
+
+    [Parameter] public RenderFragment ContentTemplate { get; set; }
+
+}

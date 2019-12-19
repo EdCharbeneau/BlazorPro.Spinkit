@@ -1,0 +1,41 @@
+﻿@switch (DefaultSpinner)
+{
+    case SpinnerType.Chase:
+        <Chase />
+        break;
+    case SpinnerType.Circle:
+        <Circle />
+        break;
+    case SpinnerType.CircleFade:
+        <CircleFade />
+        break;
+    case SpinnerType.Flow:
+        <Flow />
+        break;
+    case SpinnerType.Grid:
+        <Grid />
+        break;
+    case SpinnerType.Plane:
+        <Plane />
+        break;
+    case SpinnerType.Pulse:
+        <Pulse />
+        break;
+    case SpinnerType.Swing:
+        <Swing />
+        break;
+    case SpinnerType.Wander:
+        <Wander />
+        break;
+    case SpinnerType.Wave:
+        <Wave />
+        break;
+    case SpinnerType.Bounce:
+    default:
+        <Bounce />
+        break;
+}
+
+@code {
+    [Parameter] public SpinnerType DefaultSpinner { get; set; }
+}
