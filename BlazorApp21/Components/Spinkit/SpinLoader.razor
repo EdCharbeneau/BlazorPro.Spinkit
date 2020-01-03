@@ -14,17 +14,29 @@
 }
 else
 {
-    @ContentTemplate
+    if (!IsFaulted || FaultedContentTemplate == null)
+    {
+        @ContentTemplate
+    }
+    if (IsFaulted)
+    {
+        @FaultedContentTemplate
+    }
 }
 
 @code {
+
 
     [Parameter] public SpinnerType Spinner { get; set; }
 
     [Parameter] public bool IsLoading { get; set; }
 
+    [Parameter] public bool IsFaulted { get; set; }
+
     [Parameter] public RenderFragment LoadingTemplate { get; set; }
 
     [Parameter] public RenderFragment ContentTemplate { get; set; }
+
+    [Parameter] public RenderFragment FaultedContentTemplate { get; set; }
 
 }
