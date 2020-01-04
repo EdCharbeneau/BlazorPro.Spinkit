@@ -5,7 +5,7 @@
 {
     if (LoadingTemplate == null)
     {
-        <DefaultSpinnerChooser DefaultSpinner="Spinner" />
+        <DefaultSpinnerChooser DefaultSpinner="Spinner" @attributes="AdditionalAttributes"/>
     }
     else
     {
@@ -26,6 +26,8 @@ else
 
 @code {
 
+    [Parameter(CaptureUnmatchedValues = true)] 
+    public IReadOnlyDictionary<string, object> AdditionalAttributes { get; set; }
 
     [Parameter] public SpinnerType Spinner { get; set; }
 

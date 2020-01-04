@@ -1,7 +1,76 @@
 ﻿@page "/"
+@using BlazorApp21.Components.Spinkit.Spinners
+<style>
+    .modal-overlay {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(0,0,0,0.5);
+        z-index: 2000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+</style>
+@if (IsModalVisible)
+{
+    <div class="modal-overlay">
+        <Chase />
+        <button class="btn btn-primary" @onclick="@(_=> IsModalVisible = false)">Hide</button>
+    </div>
+}
+<div class="row">
+    <div class="col">
+        <p>Chase</p>
+        <Chase />
+    </div>
+    <div>
+        <p>Circle</p>
+        <Circle />
+    </div>
+    <div class="col">
+        <p>CircleFade</p>
+        <CircleFade />
+    </div>
+    <div class="col">
+        <p>Flow</p>
+        <Flow />
+    </div>
+    <div class="col">
+        <p>Grid</p>
+        <Grid />
+    </div>
+    <div class="col">
+        <p>Plane</p>
+        <Plane />
+    </div>
+    <div class="col">
+        <p>Pulse</p>
+        <Pulse />
+    </div>
+    <div class="col">
+        <p>Swing</p>
+        <Swing />
+    </div>
+    <div class="col">
+        <p>Wander</p>
+        <Wander />
+    </div>
+    <div class="col">
+        <p>Wave</p>
+        <Wave />
+    </div>
+    <div class="col">
+        <p>Bounce</p>
+        <Bounce />
+    </div>
+</div>
 
-<h1>Hello, world!</h1>
+<button class="btn btn-primary" @onclick="@(_=> IsModalVisible = true)">Modal</button>
 
-Welcome to your new app.
-
-<SurveyPrompt Title="How is Blazor working for you?" />
+@code {
+    bool IsModalVisible = false;
+}

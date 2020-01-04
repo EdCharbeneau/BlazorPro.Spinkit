@@ -1,1 +1,6 @@
-﻿<div class="sk-pulse"></div>
+﻿<div class="sk-pulse" @attributes="AdditionalAttributes"></div>
+
+@code {
+    [Parameter(CaptureUnmatchedValues = true)]
+    public IReadOnlyDictionary<string, object> AdditionalAttributes { get; set; }
+}

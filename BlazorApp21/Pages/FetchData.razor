@@ -16,7 +16,7 @@
         </tr>
     </thead>
     <tbody>
-        <SpinLoader IsLoading="isLoading" IsFaulted="hasError">
+        <SpinLoader IsLoading="isLoading" IsFaulted="hasError" style="background-color:blue;">
             <ContentTemplate>
                 @foreach (var forecast in forecasts)
                 {
@@ -50,10 +50,10 @@
     protected override async Task OnInitializedAsync()
     {
         isLoading = true;
-        await Task.Delay(1000);
+        await Task.Delay(10000);
         try
         {
-            forecasts = await Http.GetJsonAsync<WeatherForecast[]>("sample-dataa/weather.json");
+            forecasts = await Http.GetJsonAsync<WeatherForecast[]>("sample-data/weather.json");
         }
         catch (Exception)
         {

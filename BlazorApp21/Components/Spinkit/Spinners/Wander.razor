@@ -1,5 +1,10 @@
 ﻿<div class="sk-wander">
-    <div class="sk-wander-cube"></div>
-    <div class="sk-wander-cube"></div>
-    <div class="sk-wander-cube"></div>
+    <div class="sk-wander-cube" @attributes="AdditionalAttributes"></div>
+    <div class="sk-wander-cube" @attributes="AdditionalAttributes"></div>
+    <div class="sk-wander-cube" @attributes="AdditionalAttributes"></div>
 </div>
+
+@code {
+    [Parameter(CaptureUnmatchedValues = true)]
+    public IReadOnlyDictionary<string, object> AdditionalAttributes { get; set; }
+}

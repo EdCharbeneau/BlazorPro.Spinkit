@@ -1,7 +1,12 @@
 ﻿<div class="sk-wave">
-    <div class="sk-wave-rect"></div>
-    <div class="sk-wave-rect"></div>
-    <div class="sk-wave-rect"></div>
-    <div class="sk-wave-rect"></div>
-    <div class="sk-wave-rect"></div>
+    <div class="sk-wave-rect" @attributes="AdditionalAttributes"></div>
+    <div class="sk-wave-rect" @attributes="AdditionalAttributes"></div>
+    <div class="sk-wave-rect" @attributes="AdditionalAttributes"></div>
+    <div class="sk-wave-rect" @attributes="AdditionalAttributes"></div>
+    <div class="sk-wave-rect" @attributes="AdditionalAttributes"></div>
 </div>
+
+@code {
+    [Parameter(CaptureUnmatchedValues = true)]
+    public IReadOnlyDictionary<string, object> AdditionalAttributes { get; set; }
+}

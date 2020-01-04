@@ -1,4 +1,9 @@
 ﻿<div class="sk-swing">
-    <div class="sk-swing-dot"></div>
-    <div class="sk-swing-dot"></div>
+    <div class="sk-swing-dot" @attributes="AdditionalAttributes"></div>
+    <div class="sk-swing-dot" @attributes="AdditionalAttributes"></div>
 </div>
+
+@code {
+    [Parameter(CaptureUnmatchedValues = true)]
+    public IReadOnlyDictionary<string, object> AdditionalAttributes { get; set; }
+}

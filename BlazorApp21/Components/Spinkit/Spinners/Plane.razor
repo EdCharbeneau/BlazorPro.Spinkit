@@ -1,1 +1,6 @@
-﻿<div class="sk-plane"></div>
+﻿<div class="sk-plane" @attributes="AdditionalAttributes"></div>
+
+@code {
+    [Parameter(CaptureUnmatchedValues = true)]
+    public IReadOnlyDictionary<string, object> AdditionalAttributes { get; set; }
+}

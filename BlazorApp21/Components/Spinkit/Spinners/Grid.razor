@@ -1,11 +1,16 @@
 ﻿<div class="sk-grid">
-    <div class="sk-grid-cube"></div>
-    <div class="sk-grid-cube"></div>
-    <div class="sk-grid-cube"></div>
-    <div class="sk-grid-cube"></div>
-    <div class="sk-grid-cube"></div>
-    <div class="sk-grid-cube"></div>
-    <div class="sk-grid-cube"></div>
-    <div class="sk-grid-cube"></div>
-    <div class="sk-grid-cube"></div>
+    <div class="sk-grid-cube" @attributes="AdditionalAttributes"></div>
+    <div class="sk-grid-cube" @attributes="AdditionalAttributes"></div>
+    <div class="sk-grid-cube" @attributes="AdditionalAttributes"></div>
+    <div class="sk-grid-cube" @attributes="AdditionalAttributes"></div>
+    <div class="sk-grid-cube" @attributes="AdditionalAttributes"></div>
+    <div class="sk-grid-cube" @attributes="AdditionalAttributes"></div>
+    <div class="sk-grid-cube" @attributes="AdditionalAttributes"></div>
+    <div class="sk-grid-cube" @attributes="AdditionalAttributes"></div>
+    <div class="sk-grid-cube" @attributes="AdditionalAttributes"></div>
 </div>
+
+@code {
+    [Parameter(CaptureUnmatchedValues = true)]
+    public IReadOnlyDictionary<string, object> AdditionalAttributes { get; set; }
+}

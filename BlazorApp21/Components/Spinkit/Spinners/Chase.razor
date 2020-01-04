@@ -1,8 +1,13 @@
 ﻿<div class="sk-chase">
-    <div class="sk-chase-dot"></div>
-    <div class="sk-chase-dot"></div>
-    <div class="sk-chase-dot"></div>
-    <div class="sk-chase-dot"></div>
-    <div class="sk-chase-dot"></div>
-    <div class="sk-chase-dot"></div>
+    <div class="sk-chase-dot" @attributes="AdditionalAttributes"></div>
+    <div class="sk-chase-dot" @attributes="AdditionalAttributes"></div>
+    <div class="sk-chase-dot" @attributes="AdditionalAttributes"></div>
+    <div class="sk-chase-dot" @attributes="AdditionalAttributes"></div>
+    <div class="sk-chase-dot" @attributes="AdditionalAttributes"></div>
+    <div class="sk-chase-dot" @attributes="AdditionalAttributes"></div>
 </div>
+
+@code {
+    [Parameter(CaptureUnmatchedValues = true)]
+    public IReadOnlyDictionary<string, object> AdditionalAttributes { get; set; }
+}

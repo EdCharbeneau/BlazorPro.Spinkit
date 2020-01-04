@@ -1,41 +1,45 @@
 ﻿@switch (DefaultSpinner)
 {
     case SpinnerType.Chase:
-        <Chase />
+        <Chase @attributes="AdditionalAttributes" />
         break;
     case SpinnerType.Circle:
-        <Circle />
+        <Circle @attributes="AdditionalAttributes" />
         break;
     case SpinnerType.CircleFade:
-        <CircleFade />
+        <CircleFade @attributes="AdditionalAttributes" />
         break;
     case SpinnerType.Flow:
-        <Flow />
+        <Flow @attributes="AdditionalAttributes" />
         break;
     case SpinnerType.Grid:
-        <Grid />
+        <Grid @attributes="AdditionalAttributes" />
         break;
     case SpinnerType.Plane:
-        <Plane />
+        <Plane @attributes="AdditionalAttributes" />
         break;
     case SpinnerType.Pulse:
-        <Pulse />
+        <Pulse @attributes="AdditionalAttributes" />
         break;
     case SpinnerType.Swing:
-        <Swing />
+        <Swing @attributes="AdditionalAttributes" />
         break;
     case SpinnerType.Wander:
-        <Wander />
+        <Wander @attributes="AdditionalAttributes" />
         break;
     case SpinnerType.Wave:
-        <Wave />
+        <Wave @attributes="AdditionalAttributes" />
         break;
     case SpinnerType.Bounce:
     default:
-        <Bounce />
+        <Bounce @attributes="AdditionalAttributes" />
         break;
 }
 
 @code {
+
+    [Parameter(CaptureUnmatchedValues = true)]
+    public IReadOnlyDictionary<string, object> AdditionalAttributes { get; set; }
+
     [Parameter] public SpinnerType DefaultSpinner { get; set; }
 }
