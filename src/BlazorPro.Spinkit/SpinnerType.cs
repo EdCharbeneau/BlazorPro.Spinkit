@@ -1,4 +1,4 @@
-﻿namespace BlazorApp21.Components.Spinkit
+﻿namespace BlazorPro.Spinkit
 {
     public enum SpinnerType
     {

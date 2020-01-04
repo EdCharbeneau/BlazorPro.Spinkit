@@ -4,7 +4,7 @@
   "libraries": [
     {
       "library": "spinkit@2.0.1",
-      "destination": "wwwroot/lib/spinkit/",
+      "destination": "wwwroot",
       "files": [
         "spinkit.min.css"
       ]
