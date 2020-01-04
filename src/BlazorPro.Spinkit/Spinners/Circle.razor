@@ -1,4 +1,5 @@
-﻿<div class="sk-circle" @attributes="AdditionalAttributes">
+﻿@using BlazorComponentUtilities
+<div @attributes="AdditionalAttributes" class="@CssClass">
     <div class="sk-circle-dot"></div>
     <div class="sk-circle-dot"></div>
     <div class="sk-circle-dot"></div>
@@ -16,5 +17,11 @@
 @code {
 
     [Parameter(CaptureUnmatchedValues = true)]
-    public IReadOnlyDictionary<string, object> AdditionalAttributes { get; set; }
+    public IReadOnlyDictionary<string, object> AdditionalAttributes { get; set; } = new Dictionary<string, Object>();
+
+    CssBuilder CssClass => new CssBuilder("sk-circle")
+                               .AddClass(value: () => AdditionalAttributes["class"].ToString(),
+                                         when: AdditionalAttributes.ContainsKey("class")
+        );
+
 }

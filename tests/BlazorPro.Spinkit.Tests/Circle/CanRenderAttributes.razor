@@ -1,0 +1,55 @@
+﻿@inherits TestComponentBase
+
+<Fixture Tests="new Action[] { CircleCanRenderAttributes_Init, CircleCanRenderAttributes_ParameterSet}"
+         Description="">
+    <ComponentUnderTest>
+        <Circle @attributes="attributes" />
+        <!--
+            Same as declaring a class attribute directly
+                Example:
+            <Circle class="my-custom-class-1" />
+        -->
+    </ComponentUnderTest>
+    <Fragment>
+        <div class="sk-circle my-custom-class-1">
+            <div class="sk-circle-dot"></div>
+            <div class="sk-circle-dot"></div>
+            <div class="sk-circle-dot"></div>
+            <div class="sk-circle-dot"></div>
+            <div class="sk-circle-dot"></div>
+            <div class="sk-circle-dot"></div>
+            <div class="sk-circle-dot"></div>
+            <div class="sk-circle-dot"></div>
+            <div class="sk-circle-dot"></div>
+            <div class="sk-circle-dot"></div>
+            <div class="sk-circle-dot"></div>
+            <div class="sk-circle-dot"></div>
+        </div>
+    </Fragment>
+</Fixture>
+@code {
+
+    IReadOnlyDictionary<string, object> attributes = new Dictionary<string, object> { { "class", "my-custom-class-1" } };
+
+    void CircleCanRenderAttributes_Init()
+    {
+        IRenderedComponent<Circle> cut = GetComponentUnderTest<Circle>();
+
+        IRenderedFragment initializedCircle = GetFragment();
+
+        cut.MarkupMatches(initializedCircle);
+    }
+
+    void CircleCanRenderAttributes_ParameterSet()
+    {
+
+        attributes = new Dictionary<string, object> { { "class", "my-custom-class-2" } };
+        IRenderedComponent<Circle> cut = GetComponentUnderTest<Circle>();
+
+        cut.SetParametersAndRender((nameof(Circle.AdditionalAttributes), attributes));
+
+        cut.GetChangesSinceFirstRender().ShouldAllBe(
+            diff => diff.ShouldBeAttributeChange("class", "sk-circle my-custom-class-2")
+            );
+    }
+}

@@ -1,0 +1,33 @@
+﻿@inherits TestComponentBase
+
+<Fixture Test="CircleCanInitializeWithoutAttributes" Description="">
+    <ComponentUnderTest>
+        <Circle/>
+    </ComponentUnderTest>
+    <Fragment>
+        <div class="sk-circle">
+            <div class="sk-circle-dot"></div>
+            <div class="sk-circle-dot"></div>
+            <div class="sk-circle-dot"></div>
+            <div class="sk-circle-dot"></div>
+            <div class="sk-circle-dot"></div>
+            <div class="sk-circle-dot"></div>
+            <div class="sk-circle-dot"></div>
+            <div class="sk-circle-dot"></div>
+            <div class="sk-circle-dot"></div>
+            <div class="sk-circle-dot"></div>
+            <div class="sk-circle-dot"></div>
+            <div class="sk-circle-dot"></div>
+        </div>
+    </Fragment>
+</Fixture>
+@code {
+    void CircleCanInitializeWithoutAttributes()
+    {
+        IRenderedComponent<Circle> cut = GetComponentUnderTest<Circle>();
+
+        IRenderedFragment initializedCircle = GetFragment();
+
+        cut.MarkupMatches(initializedCircle);
+    }
+}
