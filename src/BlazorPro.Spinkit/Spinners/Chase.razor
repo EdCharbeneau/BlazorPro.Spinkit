@@ -1,13 +1,10 @@
-﻿<div class="sk-chase" @attributes="AdditionalAttributes">
-    <div class="sk-chase-dot"></div>
-    <div class="sk-chase-dot"></div>
-    <div class="sk-chase-dot"></div>
-    <div class="sk-chase-dot"></div>
-    <div class="sk-chase-dot"></div>
-    <div class="sk-chase-dot"></div>
-</div>
+﻿@inherits SpinnerBase
 
-@code {
-    [Parameter(CaptureUnmatchedValues = true)]
-    public IReadOnlyDictionary<string, object> AdditionalAttributes { get; set; }
-}
+<SpinnerContainer Center="@Center" Color="@Color" Size="@Size" @attributes="AdditionalAttributes" BaseCss="sk-chase">
+    <div class="sk-chase-dot"></div>
+    <div class="sk-chase-dot"></div>
+    <div class="sk-chase-dot"></div>
+    <div class="sk-chase-dot"></div>
+    <div class="sk-chase-dot"></div>
+    <div class="sk-chase-dot"></div>
+</SpinnerContainer>

@@ -1,0 +1,22 @@
+﻿@inherits TestComponentBase
+
+<Fixture Test="CanSetCenter">
+    <ComponentUnderTest>
+        <Circle style="position:absolute;"/>
+    </ComponentUnderTest>
+</Fixture>
+@code {
+    void CanSetCenter()
+    {
+        IRenderedComponent<Circle> cut = GetComponentUnderTest<Circle>();
+
+        cut.SetParametersAndRender((nameof(Circle.Center), true));
+        cut.SetParametersAndRender((nameof(Circle.Color), "#3498db"));
+        cut.SetParametersAndRender((nameof(Circle.Size), "48px"));
+
+        cut.GetChangesSinceFirstRender().ShouldAllBe(
+    diff => diff.ShouldBeAttributeChange("class", "sk-circle sk-center"),
+    diff => diff.ShouldBeAttributeChange("style", "--sk-color:#3498db;--sk-size:48px;position:absolute;")
+    );
+    }
+}

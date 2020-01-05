@@ -1,0 +1,35 @@
+﻿@inherits TestComponentBase
+
+<Fixture Tests="new Action[] { CircleCanRenderAttributes_Init }"
+         Description="">
+    <ComponentUnderTest>
+        <Circle Color="#3498db" Size="48px"/>
+    </ComponentUnderTest>
+    <Fragment>
+        <div class="sk-circle" style="--sk-color:#3498db; --sk-size:48px;">
+            <div class="sk-circle-dot"></div>
+            <div class="sk-circle-dot"></div>
+            <div class="sk-circle-dot"></div>
+            <div class="sk-circle-dot"></div>
+            <div class="sk-circle-dot"></div>
+            <div class="sk-circle-dot"></div>
+            <div class="sk-circle-dot"></div>
+            <div class="sk-circle-dot"></div>
+            <div class="sk-circle-dot"></div>
+            <div class="sk-circle-dot"></div>
+            <div class="sk-circle-dot"></div>
+            <div class="sk-circle-dot"></div>
+        </div>
+    </Fragment>
+</Fixture>
+@code {
+
+    void CircleCanRenderAttributes_Init()
+    {
+        IRenderedComponent<Circle> cut = GetComponentUnderTest<Circle>();
+
+        IRenderedFragment initializedCircle = GetFragment();
+
+        cut.MarkupMatches(initializedCircle);
+    }
+}

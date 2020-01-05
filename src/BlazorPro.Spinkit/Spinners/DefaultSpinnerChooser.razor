@@ -1,45 +1,42 @@
-﻿@switch (DefaultSpinner)
+﻿@inherits SpinnerBase
+@switch (DefaultSpinner)
 {
     case SpinnerType.Chase:
-        <Chase @attributes="AdditionalAttributes" />
+        <Chase Center="@Center" Size="@Size" Color="@Color" @attributes="AdditionalAttributes" />
         break;
     case SpinnerType.Circle:
-        <Circle @attributes="AdditionalAttributes" />
+        <Circle Center="@Center" Size="@Size" Color="@Color" @attributes="AdditionalAttributes" />
         break;
     case SpinnerType.CircleFade:
-        <CircleFade @attributes="AdditionalAttributes" />
+        <CircleFade Center="@Center" Size="@Size" Color="@Color" @attributes="AdditionalAttributes" />
         break;
     case SpinnerType.Flow:
-        <Flow @attributes="AdditionalAttributes" />
+        <Flow Center="@Center" Size="@Size" Color="@Color" @attributes="AdditionalAttributes" />
         break;
     case SpinnerType.Grid:
-        <Grid @attributes="AdditionalAttributes" />
+        <Grid Center="@Center" Size="@Size" Color="@Color" @attributes="AdditionalAttributes" />
         break;
     case SpinnerType.Plane:
-        <Plane @attributes="AdditionalAttributes" />
+        <Plane Center="@Center" Size="@Size" Color="@Color" @attributes="AdditionalAttributes" />
         break;
     case SpinnerType.Pulse:
-        <Pulse @attributes="AdditionalAttributes" />
+        <Pulse Center="@Center" Size="@Size" Color="@Color" @attributes="AdditionalAttributes" />
         break;
     case SpinnerType.Swing:
-        <Swing @attributes="AdditionalAttributes" />
+        <Swing Center="@Center" Size="@Size" Color="@Color" @attributes="AdditionalAttributes" />
         break;
     case SpinnerType.Wander:
-        <Wander @attributes="AdditionalAttributes" />
+        <Wander Center="@Center" Size="@Size" Color="@Color" @attributes="AdditionalAttributes" />
         break;
     case SpinnerType.Wave:
-        <Wave @attributes="AdditionalAttributes" />
+        <Wave Center="@Center" Size="@Size" Color="@Color" @attributes="AdditionalAttributes" />
         break;
     case SpinnerType.Bounce:
     default:
-        <Bounce @attributes="AdditionalAttributes" />
+        <Bounce Center="@Center" Size="@Size" Color="@Color" @attributes="AdditionalAttributes" />
         break;
 }
 
 @code {
-
-    [Parameter(CaptureUnmatchedValues = true)]
-    public IReadOnlyDictionary<string, object> AdditionalAttributes { get; set; }
-
     [Parameter] public SpinnerType DefaultSpinner { get; set; }
 }

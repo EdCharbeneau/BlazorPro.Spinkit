@@ -1,8 +1,9 @@
-﻿@if (IsLoading)
+﻿@inherits SpinnerBase
+@if (IsLoading)
 {
     if (LoadingTemplate == null)
     {
-        <DefaultSpinnerChooser DefaultSpinner="Spinner" @attributes="AdditionalAttributes"/>
+        <DefaultSpinnerChooser Center="@Center" DefaultSpinner="Spinner" Size="@Size" Color="@Color" @attributes="AdditionalAttributes"/>
     }
     else
     {
@@ -22,9 +23,6 @@ else
 }
 
 @code {
-
-    [Parameter(CaptureUnmatchedValues = true)] 
-    public IReadOnlyDictionary<string, object> AdditionalAttributes { get; set; }
 
     [Parameter] public SpinnerType Spinner { get; set; }
 

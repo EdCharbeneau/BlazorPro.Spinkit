@@ -1,9 +1,5 @@
-﻿<div class="sk-swing" @attributes="AdditionalAttributes">
+﻿@inherits SpinnerBase
+<SpinnerContainer Center="@Center" Color="@Color" Size="@Size" @attributes="AdditionalAttributes" BaseCss="sk-swing">
     <div class="sk-swing-dot"></div>
     <div class="sk-swing-dot"></div>
-</div>
-
-@code {
-    [Parameter(CaptureUnmatchedValues = true)]
-    public IReadOnlyDictionary<string, object> AdditionalAttributes { get; set; }
-}
+</SpinnerContainer>

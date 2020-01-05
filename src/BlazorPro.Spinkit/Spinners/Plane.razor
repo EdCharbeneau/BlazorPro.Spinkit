@@ -1,6 +1,2 @@
-﻿<div class="sk-plane" @attributes="AdditionalAttributes"></div>
-
-@code {
-    [Parameter(CaptureUnmatchedValues = true)]
-    public IReadOnlyDictionary<string, object> AdditionalAttributes { get; set; }
-}
+﻿@inherits SpinnerBase
+<SpinnerContainer Center="@Center" Color="@Color" Size="@Size" @attributes="AdditionalAttributes" BaseCss="sk-plane"/>

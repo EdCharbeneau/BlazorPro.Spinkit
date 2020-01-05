@@ -1,16 +1,13 @@
-﻿<div class="sk-grid" @attributes="AdditionalAttributes">
-    <div class="sk-grid-cube"></div>
-    <div class="sk-grid-cube"></div>
-    <div class="sk-grid-cube"></div>
-    <div class="sk-grid-cube"></div>
-    <div class="sk-grid-cube"></div>
-    <div class="sk-grid-cube"></div>
-    <div class="sk-grid-cube"></div>
-    <div class="sk-grid-cube"></div>
-    <div class="sk-grid-cube"></div>
-</div>
+﻿@inherits SpinnerBase
 
-@code {
-    [Parameter(CaptureUnmatchedValues = true)]
-    public IReadOnlyDictionary<string, object> AdditionalAttributes { get; set; }
-}
+<SpinnerContainer Center="@Center" Color="@Color" Size="@Size" @attributes="AdditionalAttributes" BaseCss="sk-grid">
+    <div class="sk-grid-cube"></div>
+    <div class="sk-grid-cube"></div>
+    <div class="sk-grid-cube"></div>
+    <div class="sk-grid-cube"></div>
+    <div class="sk-grid-cube"></div>
+    <div class="sk-grid-cube"></div>
+    <div class="sk-grid-cube"></div>
+    <div class="sk-grid-cube"></div>
+    <div class="sk-grid-cube"></div>
+</SpinnerContainer>

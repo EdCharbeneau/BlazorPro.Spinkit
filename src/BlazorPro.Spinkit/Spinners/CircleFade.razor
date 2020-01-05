@@ -1,19 +1,17 @@
-﻿<div class="sk-circle-fade" @attributes="AdditionalAttributes">
-    <div class="sk-circle-fade-dot"></div>
-    <div class="sk-circle-fade-dot"></div>
-    <div class="sk-circle-fade-dot"></div>
-    <div class="sk-circle-fade-dot"></div>
-    <div class="sk-circle-fade-dot"></div>
-    <div class="sk-circle-fade-dot"></div>
-    <div class="sk-circle-fade-dot"></div>
-    <div class="sk-circle-fade-dot"></div>
-    <div class="sk-circle-fade-dot"></div>
-    <div class="sk-circle-fade-dot"></div>
-    <div class="sk-circle-fade-dot"></div>
-    <div class="sk-circle-fade-dot"></div>
-</div>
+﻿@inherits SpinnerBase
 
-@code {
-    [Parameter(CaptureUnmatchedValues = true)]
-    public IReadOnlyDictionary<string, object> AdditionalAttributes { get; set; }
-}
+<SpinnerContainer Center="@Center" Color="@Color" Size="@Size" @attributes="AdditionalAttributes" BaseCss="sk-chase">
+    <div class="sk-circle-fade-dot"></div>
+    <div class="sk-circle-fade-dot"></div>
+    <div class="sk-circle-fade-dot"></div>
+    <div class="sk-circle-fade-dot"></div>
+    <div class="sk-circle-fade-dot"></div>
+    <div class="sk-circle-fade-dot"></div>
+    <div class="sk-circle-fade-dot"></div>
+    <div class="sk-circle-fade-dot"></div>
+    <div class="sk-circle-fade-dot"></div>
+    <div class="sk-circle-fade-dot"></div>
+    <div class="sk-circle-fade-dot"></div>
+    <div class="sk-circle-fade-dot"></div>
+</SpinnerContainer>
+

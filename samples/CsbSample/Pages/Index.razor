@@ -1,12 +1,5 @@
 ﻿@page "/"
 
-@if (IsModalVisible)
-{
-    <div class="modal-overlay">
-        <Wave />
-        <button class="btn btn-primary" @onclick="@(_=> IsModalVisible = false)">Hide</button>
-    </div>
-}
 <div class="row">
     <div class="col">
         <p>Chase</p>
@@ -53,9 +46,3 @@
         <Bounce />
     </div>
 </div>
-
-<button class="btn btn-primary" @onclick="@(_=> IsModalVisible = true)">Modal</button>
-
-@code {
-    bool IsModalVisible = false;
-}

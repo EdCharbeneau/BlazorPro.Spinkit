@@ -1,10 +1,15 @@
-﻿@page "/fetchdata"
+﻿@page "/modal"
 @inject HttpClient Http
 
 <h1>Weather forecast</h1>
 
 <p>This component demonstrates fetching data from the server.</p>
-<SpinLoader IsLoading="isLoading" IsFaulted="hasError" Size="46px" Color="#3498db" Center="true">
+<SpinLoader IsLoading="@(forecasts == null)" >
+    <LoadingTemplate>
+        <div class="modal-overlay">
+            <Plane Center="true" />
+        </div>
+    </LoadingTemplate>
     <ContentTemplate>
         <table class="table">
             <thead>
@@ -28,40 +33,18 @@
             </tbody>
         </table>
     </ContentTemplate>
-    <FaultedContentTemplate>
-        <tr>
-            <td colspan="4">
-                <div class="alert alert-danger">Fail</div>
-            </td>
-        </tr>
-    </FaultedContentTemplate>
 </SpinLoader>
 
 
 @code {
 
     private WeatherForecast[] forecasts;
-    private bool hasError = false;
-    private bool isLoading = true;
 
 
     protected override async Task OnInitializedAsync()
     {
-        isLoading = true;
-        await Task.Delay(5000);
-        try
-        {
-            forecasts = await Http.GetJsonAsync<WeatherForecast[]>("sample-data/weather.json");
-        }
-        catch (Exception)
-        {
-            hasError = true;
-        }
-        finally
-        {
-            isLoading = false;
-        }
-
+        await Task.Delay(3000);
+        forecasts = await Http.GetJsonAsync<WeatherForecast[]>("sample-data/weather.json");
     }
 
     public class WeatherForecast

@@ -1,0 +1,14 @@
+﻿@page "/size-color"
+
+<Circle Color="@color" Size="@Size"></Circle>
+
+<hr />
+<input @bind="color" type="color" />
+<input @bind="size" type="range" min="10" max="200"/>
+@code {
+    string color = "#9b59b6";
+
+    int size = 40;
+
+    string Size => $"{size}px";
+}

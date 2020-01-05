@@ -1,0 +1,117 @@
+﻿@page "/fetchdata2"
+@inject HttpClient Http
+
+<h1>Weather forecast</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Temp. (C)</th>
+            <th>Temp. (F)</th>
+            <th>Summary</th>
+        </tr>
+    </thead>
+    <tbody>
+        <SpinLoader IsLoading="isLoading" IsFaulted="isFaulted">
+            <LoadingTemplate>
+                <tr>
+                    <td colspan="4" style="vertical-align: middle;background-color: rgb(0, 0, 0, .2); height:300px;">
+                        <Circle Color="#e67e22" Size="60px" Center="true" />
+                    </td>
+                </tr>
+            </LoadingTemplate>
+            <ContentTemplate>
+                @foreach (var forecast in forecasts)
+                {
+                    <tr>
+                        <td>@forecast.Date.ToShortDateString()</td>
+                        <td>@forecast.TemperatureC</td>
+                        <td>@forecast.TemperatureF</td>
+                        <td>@forecast.Summary</td>
+                    </tr>
+                }
+            </ContentTemplate>
+            <FaultedContentTemplate>
+                <tr>
+                    <td colspan="4">
+                        <div class="alert alert-danger">Fail</div>
+                    </td>
+                </tr>
+            </FaultedContentTemplate>
+        </SpinLoader>
+    </tbody>
+</table>
+
+<button @onclick="LoadData">Retry</button>
+<input type="checkbox" @bind="forceException" />
+
+@code {
+
+        WeatherForecast[] forecasts;
+        bool isFaulted = false;
+        bool isLoading = true;
+        int delay = 2000;
+        bool forceException = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadData();
+    }
+
+    async Task LoadData()
+    {
+        await TryLoadingData(
+            onSuccess: SuccessPath,
+            onFaulted: FaultedPath
+            );
+    }
+
+    void SuccessPath(WeatherForecast[] data)
+    {
+        isFaulted = false;
+        // do work
+        forecasts = data;
+    }
+
+    void FaultedPath(Exception e)
+    {
+        var fakeLog = e.Message;
+        isFaulted = true;
+    }
+
+    async Task TryLoadingData(Action<WeatherForecast[]> onSuccess, Action<Exception> onFaulted)
+    {
+        isLoading = true;
+        await Task.Delay(delay);
+        try
+        {
+            if (forceException)
+            {
+                throw new NotSupportedException();
+            }
+            var data = await Http.GetJsonAsync<WeatherForecast[]>("sample-data/weather.json");
+            onSuccess(data);
+        }
+        catch (Exception e)
+        {
+            onFaulted(e);
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    public class WeatherForecast
+    {
+        public DateTime Date { get; set; }
+
+        public int TemperatureC { get; set; }
+
+        public string Summary { get; set; }
+
+        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    }
+}
