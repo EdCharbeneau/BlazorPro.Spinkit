@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -28,12 +29,39 @@ namespace SsbSample
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<WeatherForecastService>();
+            services.AddScoped<WeatherForecastService>();
+            services.AddDbContext<WeatherDbContext>(opt =>
+                opt.UseInMemoryDatabase(databaseName: "SampleData")
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
+            /* Inject the service provider */ IServiceProvider serviceProvider)
         {
+            string[] summaries = new[]
+        {
+            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+        };
+            var o = new DbContextOptionsBuilder<WeatherDbContext>().UseInMemoryDatabase(databaseName: "SampleData");
+
+            //Resolve and use the service
+            using (var dbContext = serviceProvider.GetService<WeatherDbContext>())
+            {
+                dbContext.Database.EnsureCreated();
+                var rng = new Random();
+
+                dbContext.WeatherForecasts.AddRange(
+                    Enumerable.Range(1, 30000).Select(index => new WeatherForecast
+                    {
+                        Id = index,
+                        Date = DateTime.Now.AddDays(index),
+                        TemperatureC = rng.Next(-20, 55),
+                        Summary = summaries[rng.Next(summaries.Length)]
+                    }));
+                dbContext.SaveChanges();
+            }
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CsbSample", "samples\CsbSam
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorPro.Spinkit.Tests", "tests\BlazorPro.Spinkit.Tests\BlazorPro.Spinkit.Tests.csproj", "{C90B6DB7-516A-4051-9029-E4CC4CC5575A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SsbSample", "samples\SsbSample\SsbSample.csproj", "{545B7476-5A55-40A7-9EC5-E93D9475655F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SsbSample", "samples\SsbSample\SsbSample.csproj", "{545B7476-5A55-40A7-9EC5-E93D9475655F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

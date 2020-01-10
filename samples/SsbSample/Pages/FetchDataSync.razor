@@ -1,0 +1,124 @@
+﻿@page "/fetchdata"
+@using SsbSample.Data
+@inject WeatherForecastService WeatherService
+
+<h1>Weather forecast</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+<p>
+    The &lt;SpinLoader&gt; component supports three template regions:
+    <ul>
+        <li>LoadingTemplate (optional) - content to display while the IsLoading property is <b>true</b>.</li>
+        <li>ContentTemplate - content to display when the IsLoading is <b>false</b></li>
+        <li>FaultedTemplate - content to display when IsFaulted is <b>true</b> and IsLoading is <b>false</b></li>
+    </ul>
+</p>
+<div class="form-row align-items-center">
+    <div class="col-auto">
+        <div class="form-check mb-2">
+            <input id="forceException" type="checkbox" @bind="forceException" class="form-check-input" />
+            <label class="form-check-label" for="forceException">Force exception</label>
+        </div>
+    </div>
+    <div class="col-auto">
+        <button class="btn btn-primary mb-2" @onclick="LoadData">Retry</button>
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Temp. (C)</th>
+            <th>Temp. (F)</th>
+            <th>Summary</th>
+        </tr>
+    </thead>
+    <tbody>
+        <SpinLoader IsLoading="isLoading" IsFaulted="isFaulted">
+            <LoadingTemplate>
+                <tr>
+                    <td colspan="4" style="vertical-align: middle;background-color: rgb(0, 0, 0, .2); height:300px;">
+                        <Circle Color="#e67e22" Size="60px" Center="true" />
+                    </td>
+                </tr>
+            </LoadingTemplate>
+            <ContentTemplate>
+                @foreach (var forecast in forecasts)
+                {
+                    <tr>
+                        <td>@forecast.Date.ToShortDateString()</td>
+                        <td>@forecast.TemperatureC</td>
+                        <td>@forecast.TemperatureF</td>
+                        <td>@forecast.Summary</td>
+                    </tr>
+                }
+            </ContentTemplate>
+            <FaultedContentTemplate>
+                <tr>
+                    <td colspan="4">
+                        <div class="alert alert-danger">Fail</div>
+                    </td>
+                </tr>
+            </FaultedContentTemplate>
+        </SpinLoader>
+    </tbody>
+</table>
+
+@code {
+
+    WeatherForecast[] forecasts;
+    bool isFaulted = false;
+    bool isLoading = true;
+    int delay = 2000;
+    bool forceException = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadData();
+    }
+
+    async Task LoadData()
+    {
+        await TryLoadingData(
+            onSuccess: SuccessPath,
+            onFaulted: FaultedPath
+            );
+    }
+
+    void SuccessPath(WeatherForecast[] data)
+    {
+        // do work
+        forecasts = data;
+    }
+
+    void FaultedPath(Exception e)
+    {
+        // log message, don't share it with the user
+        var fakeLog = e.Message;
+    }
+
+    async Task TryLoadingData(Action<WeatherForecast[]> onSuccess, Action<Exception> onFaulted)
+    {
+        isLoading = true;
+        try
+        {
+            if (forceException)
+            {
+                throw new NotSupportedException();
+            }
+            var data = await Task.Run(() => WeatherService.GetForecast(DateTime.Now));
+            isFaulted = false;
+            onSuccess(data);
+        }
+        catch (Exception e)
+        {
+            isFaulted = true;
+            onFaulted(e);
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+}
