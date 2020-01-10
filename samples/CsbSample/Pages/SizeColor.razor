@@ -1,10 +1,23 @@
 ﻿@page "/size-color"
 
-<Circle Color="@color" Size="@Size"></Circle>
 
-<hr />
-<input @bind="color" type="color" />
-<input @bind="size" type="range" min="10" max="200"/>
+<form>
+    <div class="form-row align-items-center">
+        <div class="col-sm-3 my-1">
+            <label>Color</label>
+            <input @bind="color" type="color" class="form-control" />
+        </div>
+        <div class="col-auto my-1">
+            <label>Size</label>
+            <input @bind="size" type="range" min="10" max="200" class="form-control" />
+        </div>
+    </div>
+</form>
+
+<div style="display: flex;align-items: center;justify-content: center;flex-direction: column;height:400px;">
+    <Circle Center="true" Color="@color" Size="@Size"></Circle>
+</div>
+
 @code {
     string color = "#9b59b6";
 

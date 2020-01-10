@@ -1,5 +1,6 @@
-﻿@page "/fetchdata2"
-@inject HttpClient Http
+﻿@page "/fetchdata"
+@using SsbSample.Data
+@inject WeatherForecastService WeatherService
 
 <h1>Weather forecast</h1>
 
@@ -99,14 +100,13 @@
     async Task TryLoadingData(Action<WeatherForecast[]> onSuccess, Action<Exception> onFaulted)
     {
         isLoading = true;
-        await Task.Delay(delay);
         try
         {
             if (forceException)
             {
                 throw new NotSupportedException();
             }
-            var data = await Http.GetJsonAsync<WeatherForecast[]>("sample-data/weather.json");
+            var data = await WeatherService.GetForecastAsync(DateTime.Now);
             isFaulted = false;
             onSuccess(data);
         }
@@ -121,14 +121,4 @@
         }
     }
 
-    public class WeatherForecast
-    {
-        public DateTime Date { get; set; }
-
-        public int TemperatureC { get; set; }
-
-        public string Summary { get; set; }
-
-        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-    }
 }

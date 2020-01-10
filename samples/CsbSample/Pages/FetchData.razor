@@ -4,6 +4,8 @@
 <h1>Weather forecast</h1>
 
 <p>This component demonstrates fetching data from the server.</p>
+<p>An artificial delay of 3000ms is used to show a &lt;SpinLoader&gt; component.</p>
+
 <SpinLoader IsLoading="isLoading" IsFaulted="hasError" Size="46px" Color="#3498db" Center="true">
     <ContentTemplate>
         <table class="table">
@@ -37,7 +39,6 @@
     </FaultedContentTemplate>
 </SpinLoader>
 
-
 @code {
 
     private WeatherForecast[] forecasts;
@@ -48,7 +49,7 @@
     protected override async Task OnInitializedAsync()
     {
         isLoading = true;
-        await Task.Delay(5000);
+        await Task.Delay(3000);
         try
         {
             forecasts = await Http.GetJsonAsync<WeatherForecast[]>("sample-data/weather.json");
