@@ -1,10 +1,11 @@
-﻿@page "/fetchdata2"
+﻿@page "/fetchdata-async"
 @using SsbSample.Data
 @inject WeatherForecastService WeatherService
 
 <h1>Weather forecast</h1>
 
-<p>This component demonstrates fetching data from the server.</p>
+<p>This component demonstrates fetching data from an Async service.</p>
+
 <p>
     The &lt;SpinLoader&gt; component supports three template regions:
     <ul>
@@ -16,12 +17,15 @@
 <div class="form-row align-items-center">
     <div class="col-auto">
         <div class="form-check mb-2">
-            <input id="forceException" type="checkbox" @bind="forceException" class="form-check-input" />
-            <label class="form-check-label" for="forceException">Force exception</label>
+            <input id="@nameof(forceException)" type="checkbox" @bind="forceException" class="form-check-input" />
+            <label class="form-check-label" for="@nameof(forceException)">Force exception</label>
         </div>
     </div>
     <div class="col-auto">
         <button class="btn btn-primary mb-2" @onclick="LoadData">Retry</button>
+    </div>
+    <div class="col-auto">
+        <label>@lastLoaded.TimeOfDay</label>
     </div>
 </div>
 <table class="table">
@@ -69,8 +73,8 @@
     WeatherForecast[] forecasts;
     bool isFaulted = false;
     bool isLoading = true;
-    int delay = 2000;
     bool forceException = false;
+    DateTime lastLoaded;
 
     protected override async Task OnInitializedAsync()
     {
@@ -89,6 +93,7 @@
     {
         // do work
         forecasts = data;
+        lastLoaded = DateTime.Now;
     }
 
     void FaultedPath(Exception e)
@@ -106,7 +111,8 @@
             {
                 throw new NotSupportedException();
             }
-            var data = await WeatherService.GetForecastAsync(DateTime.Now);
+            var data = await Task.Run(async ()=> await WeatherService.GetForecastAsync(DateTime.Now));
+            
             isFaulted = false;
             onSuccess(data);
         }

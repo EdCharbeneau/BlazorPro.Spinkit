@@ -1,21 +1,21 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SsbSample.Data;
+using System;
+using System.Linq;
 
 namespace SsbSample
 {
     public class Startup
     {
+        /// <summary>
+        /// Configure the number of seed records
+        /// </summary>
+        int RecordsToSeed => 100000;
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -52,7 +52,7 @@ namespace SsbSample
                 var rng = new Random();
 
                 dbContext.WeatherForecasts.AddRange(
-                    Enumerable.Range(1, 30000).Select(index => new WeatherForecast
+                    Enumerable.Range(1, RecordsToSeed).Select(index => new WeatherForecast
                     {
                         Id = index,
                         Date = DateTime.Now.AddDays(index),

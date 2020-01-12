@@ -7,17 +7,21 @@ namespace SsbSample.Data
 {
     public class WeatherForecastService
     {
+        /// <summary>
+        /// Set the database sample size
+        /// </summary>
+        int RecordsToFetch => 20000;
         private readonly WeatherDbContext dbContext;
         public WeatherForecastService(WeatherDbContext dbContext) => this.dbContext = dbContext;
 
-        public async Task<WeatherForecast[]> GetForecastAsync(DateTime startDate)
-        {
-            return await dbContext.WeatherForecasts.ToArrayAsync();
-        }
+        public IQueryable<WeatherForecast> Query(DateTime startDate) =>
+         dbContext.WeatherForecasts.Where(wf => wf.Date >= startDate).Take(RecordsToFetch);
 
-        public WeatherForecast[] GetForecast(DateTime startDate)
-        {
-            return dbContext.WeatherForecasts.ToArray();
-        }
+        public async Task<WeatherForecast[]> GetForecastAsync(DateTime startDate) => 
+            await Query(startDate).ToArrayAsync();
+
+        public WeatherForecast[] GetForecast(DateTime startDate) =>
+            Query(startDate).ToArray();
     }
+
 }
