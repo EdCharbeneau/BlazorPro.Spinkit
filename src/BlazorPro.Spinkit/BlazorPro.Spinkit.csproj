@@ -5,8 +5,8 @@
     <RazorLangVersion>3.0</RazorLangVersion>
     <Authors>Ed Charbeneau</Authors>
     <Company>EdCharbeneau.com</Company>
-    <Description>A collection of loading indicators animated with CSS for Blazor. Spinkit also includes the SpinLoader component with templates for handling null values during async operations. Spinkit includes CSS from the Spinkit project by Tobias Ahlin https://tobiasahlin.com/spinkit/    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-</Description>
+    <Description>A collection of loading indicators animated with CSS for Blazor. Spinkit also includes the SpinLoader component with templates for handling null values during async operations. Spinkit includes CSS from the Spinkit project by Tobias Ahlin https://tobiasahlin.com/spinkit/    </Description>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <PackageIcon>blazor-glove-128.jpg</PackageIcon>
     <PackageIconUrl />
     <RepositoryUrl>https://github.com/EdCharbeneau/BlazorPro.Spinkit</RepositoryUrl>
