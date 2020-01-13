@@ -1,4 +1,4 @@
-# Blazored Modal
+# BlazorPro Spinkit
 
 A collection of loading indicators animated with CSS for Blazor. Spinkit also includes the SpinLoader component with templates for handling null values during async operations. Spinkit includes CSS from the Spinkit project by [Tobias Ahlin](https://tobiasahlin.com/spinkit/)
 
