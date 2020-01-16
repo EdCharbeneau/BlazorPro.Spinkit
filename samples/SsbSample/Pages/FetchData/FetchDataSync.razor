@@ -75,9 +75,26 @@
     bool forceException = false;
     DateTime lastLoaded;
 
-    protected override async Task OnInitializedAsync()
+    /// In Blazor WASM we would normally place
+    /// data initialization here. However, on
+    /// Blazor Server, a long running task in
+    /// OnInitializedAsync will cause happen
+    /// at the server and no spinner will display
+    /// Instead, long running initialize methods
+    /// should be moved to OnAfterRender with
+    /// an added call to StateHasChange().
+    //protected override async Task OnInitializedAsync()
+    //{
+    //    await LoadData();
+    //}
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        await LoadData();
+        if (firstRender)
+        {
+            await LoadData();
+            StateHasChanged();
+        }
     }
 
     async Task LoadData()

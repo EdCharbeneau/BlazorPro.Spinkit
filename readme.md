@@ -442,8 +442,31 @@ The following example shows the full extent of what SpinLoader can do. This exam
 
 ## Server Operation
 
-Because Blazor Server apps use pre-rendering long operations may need to be wrapped in Task.Run to invoke a spinner.
+Because Blazor Server apps use pre-rendering to show the spinner the long operation must be done in OnAfterRunder.
 
+```csharp
+    // Don't do this
+    //protected override async Task OnInitializedAsync()
+    //{
+    //    await LongOperation();
+    //}
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await LongOperation();
+            StateHasChanged();
+        }
+    }
 ```
-await Task.Run(async ()=> await WeatherService.GetForecastAsync(DateTime.Now))
+
+Synchronous long operations may need to be wrapped in Task.Run to invoke the operation from an async context.
+
+```csharp
+
+// Invoked from button or AfterRenderAsync etc.
+async Task LoadData() {
+    await Task.Run(() => LongRunningSync());
+}
 ```
