@@ -42,6 +42,7 @@ Add one of the following components to your index page.
 <Wander />
 <Wave />
 <Bounce />
+<Fold />
 ```
 ### 3. Add reference to style sheet
 
@@ -219,7 +220,7 @@ Pixels
 
 ### SpinLoader Customization
 
-The SpinLoader Component has the same properties as a Spinner: Color (string), Size (string), and Cetner (bool). These values will be passed to the SpinLoader's internal spinner if **no LoadingTemplate** is specified.
+The SpinLoader Component has the same properties as a Spinner: Color (string), Size (string), and Center (bool). These values will be passed to the SpinLoader's internal spinner if **no LoadingTemplate** is specified.
 
 <p>
     The &lt;SpinLoader&gt; component supports three template regions:
