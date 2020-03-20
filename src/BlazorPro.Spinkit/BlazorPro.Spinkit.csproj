@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
     <TargetFramework>netstandard2.1</TargetFramework>
     <RazorLangVersion>3.0</RazorLangVersion>
     <Authors>Ed Charbeneau</Authors>
@@ -13,9 +12,13 @@
     <RepositoryUrl>https://github.com/EdCharbeneau/BlazorPro.Spinkit</RepositoryUrl>
     <RepositoryType></RepositoryType>
     <PackageTags>Blazor, Razor Components</PackageTags>
-    <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
+    <PackageReleaseNotes>1.1 Updated Blazor dependencies to lastest
+1.0 Initial Release</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/EdCharbeneau/BlazorPro.Spinkit</PackageProjectUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <FileVersion>1.1.0.0</FileVersion>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
 
