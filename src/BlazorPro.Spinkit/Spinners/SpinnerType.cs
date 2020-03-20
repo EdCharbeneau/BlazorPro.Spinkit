@@ -7,6 +7,7 @@
         Circle,
         CircleFade,
         Flow,
+        Fold,
         Grid,
         Plane,
         Pulse,
