@@ -4,7 +4,13 @@ A collection of loading indicators animated with CSS for Blazor. Spinkit also in
 
 ![Screenshot of the component in action](https://raw.githubusercontent.com/EdCharbeneau/BlazorPro.Spinkit/master/src/BlazorPro.Spinkit/_resources/demo.gif)
 
-## Getting Setup
+## Video Tutorial
+
+In this tutorial you'll learn how to use BlazorPro.Spinkit with your pages/components.
+
+[![A video setup guide](https://github.com/EdCharbeneau/BlazorPro.Spinkit/blob/master/src/BlazorPro.Spinkit/_resources/video.jpg?raw=true)](https://www.youtube.com/watch?v=FcsZW3cAcmQ&feature=emb_logo)
+
+## Getting Started
 
 You can install the package via the nuget package manager just search for *BlazorPro.Spinkit*. You can also install via powershell using the following command.
 
