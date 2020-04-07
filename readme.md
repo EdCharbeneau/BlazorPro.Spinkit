@@ -28,7 +28,7 @@ dotnet add package BlazorPro.Spinkit
 
 Add the following to your *_Imports.razor*
 
-```csharp
+```razor
 @using BlazorPro.Spinkit
 ```
 
@@ -36,7 +36,7 @@ Add the following to your *_Imports.razor*
 
 Add one of the following components to your index page.
 
-```
+```razor
 <Chase />
 <Circle />
 <CircleFade />
@@ -64,7 +64,7 @@ Add the following line to the `head` tag of your `_Host.cshtml` (Blazor Server) 
 
 Spinners are best used with some long running task. Simply create a flag to indicate the process is running and display a spinner with an `if` statement.
 
-```html
+```razor
 @page "/"
 
 if (IsLoading) {
@@ -81,7 +81,7 @@ Instead of writing common boilerplate code with if statements you may use the Sp
 
 In the following example we can remove the statement `@if (forecasts == null)` and replace it with the SpinLoader Component.
 
-```
+```razor
 @page "/fetchdata"
 @inject HttpClient Http
 
@@ -143,7 +143,7 @@ else
 
 In the following example the loading predicate `forecast == null` is moved to the IsLoading property of the SpinLoader Component. This eliminates the need for an `if` statement. A default loading indicator (aka spinner) will be shown or one can be chosen by setting the `Spinner` property, Ex: `Spinner="SpinnerType.Plane"`.
 
-```
+```razor
 @page "/fetchdata"
 <h1>Weather forecast</h1>
 
@@ -207,7 +207,7 @@ Spinners have three parameters that are used to control their properties: Color 
 
 **Color:** Any valid CSS color value. 
 
-```
+```razor
 All Black
 <Circle Color="#000000" />
 
@@ -217,7 +217,7 @@ Green with Opacity
 
 **Size:** Any valid CSS size value. `[ px | em | rem | % ]`
 
-```
+```razor
 Pixels
 <Circle Size="100px" />
 ```
@@ -243,7 +243,7 @@ The SpinLoader Component has the same properties as a Spinner: Color (string), S
 
 Spinners can be globally styled using CSS through the `--sk-color` and `--sk-size` CSS variables.
 
-```
+```css
 :root {
     --sk-size: 40px;
     --sk-color: #333;
@@ -252,7 +252,7 @@ Spinners can be globally styled using CSS through the `--sk-color` and `--sk-siz
 
 A more targeted approach is to use a CSS selector with a greater specificity.
 
-```
+```razor
 site.css
 .my-spinner {
     --sk-size: 48px;
@@ -271,7 +271,7 @@ Note: This feature is not useful for Blazor Server apps since they are pre-rende
 
 1. Inside the index.html replace the `<app>` element with the following snippet.
 
-```
+```razor
 <app>
     <div class="modal-overlay">
         <div class="sk-wave">
@@ -287,7 +287,7 @@ Note: This feature is not useful for Blazor Server apps since they are pre-rende
 
 2. Add the `modal-overlay` style to your site.css.
 
-```
+```css
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -310,7 +310,7 @@ To choose the spinner type refer to the [HTML/CSS project's documentation](https
 
 The following example shows the full extent of what SpinLoader can do. This example includes all possible templates and pattern for handling exceptions.
 
-```
+```razor
 @page "/fetchdata"
 @inject HttpClient Http
 
