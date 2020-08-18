@@ -267,7 +267,7 @@ Component.razor
 
 Even though we don't have access to Razor Components in our index.html, we can still make use of the component's HTML/CSS because it is based on the popular CSS library Spinkit by [Tobias Ahlin](https://tobiasahlin.com/spinkit/).
 
-Note: This feature is not useful for Blazor Server apps since they are pre-rendered.
+Note: This feature is not useful for Blazor Server apps if they are pre-rendered.
 
 1. Inside the index.html replace the `<app>` element with the following snippet.
 
@@ -449,7 +449,7 @@ The following example shows the full extent of what SpinLoader can do. This exam
 
 ## Server Operation
 
-Because Blazor Server apps use pre-rendering to show the spinner the long operation must be done in OnAfterRunder.
+Because Blazor Server apps use pre-rendering to show the spinner the long operation must be done in OnAfterRender.
 
 ```csharp
     // Don't do this
