@@ -260,7 +260,7 @@ site.css
 }
 
 Component.razor
-<Circle css="my-spinner" />
+<Circle class="my-spinner" />
 ```
 
 ### Advanced: App Loader
