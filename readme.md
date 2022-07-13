@@ -449,7 +449,7 @@ The following example shows the full extent of what SpinLoader can do. This exam
 
 ## Server Operation
 
-Because Blazor Server apps use pre-rendering to show the spinner the long operation must be done in OnAfterRunder.
+Because Blazor Server apps use pre-rendering to show the spinner the long operation must be done in OnAfterRender.
 
 ```csharp
     // Don't do this
